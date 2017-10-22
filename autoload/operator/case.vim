@@ -36,7 +36,7 @@ function! s:cut_textobj(motion_wiseness)
     execute 'normal!' '`[' . l:visual_command . '`]"' . l:register_name . 'd'
     let &g:selection = l:old_selection
     let l:reg_value = getreg(l:register_name)
-  finall
+  finally
     call setreg(l:register_name, l:tmp_reg)
   endtry
 
