@@ -1,0 +1,33 @@
+let s:themis_deps_home =
+  \ $THEMIS_DEPS_DIR ==# '' ? expand('~/.cache/themis') : $THEMIS_DEPS_DIR
+
+let s:dep_repos = ['kana/vim-operator-user']
+
+let s:dep_paths = []
+
+for s:dep_repo in s:dep_repos
+  let s:dir_path = s:themis_deps_home . '/github.com/' . s:dep_repo
+
+  if !isdirectory(s:dir_path)
+    execute '!git clone https://github.com/' . s:dep_repo s:dir_path
+  endif
+
+  call add(s:dep_paths, s:dir_path)
+endfor
+
+call themis#option('runtimepath', s:dep_paths)
+
+call themis#helper('command').with(themis#helper('assert'))
+
+map gcc <Plug>(operator-case-camelize)
+map gcp <Plug>(operator-case-pascalize)
+map gcs <Plug>(operator-case-snakenize)
+map gcC <Plug>(operator-case-constantize)
+
+function! g:Insert(str)
+  call setline(line('.'), a:str)
+endfunction
+
+function! g:GetText()
+  return join(getline(1, '$'), "\n")
+endfunction

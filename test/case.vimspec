@@ -1,0 +1,144 @@
+Describe operator#case
+  Before each
+    let camel = 'fooBarBaz'
+    let pascal = 'FooBarBaz'
+    let snake = 'foo_bar_baz'
+    let constant = 'FOO_BAR_BAZ'
+  End
+
+  Describe #camelize
+    Context with the camel case
+      It should be camelize
+        call g:Insert(camel)
+        normal gcciw
+        Assert Equal(g:GetText(), camel)
+      End
+    End
+
+    Context with the pascal case
+      It should be camelize
+        call g:Insert(pascal)
+        normal gcciw
+        Assert Equal(g:GetText(), camel)
+      End
+    End
+
+    Context with the constant case
+      It should be camelize
+        call g:Insert(constant)
+        normal gcciw
+        Assert Equal(g:GetText(), camel)
+      End
+    End
+
+    Context with the snake case
+      It should be camelize
+        call g:Insert(snake)
+        normal gcciw
+        Assert Equal(g:GetText(), camel)
+      End
+    End
+  End
+
+  Describe #pascalize
+    Context with the camel case
+      It should be pascalize
+        call g:Insert(camel)
+        normal gcpiw
+        Assert Equal(g:GetText(), pascal)
+      End
+    End
+
+    Context with the pascal case
+      It should be pascalize
+        call g:Insert(pascal)
+        normal gcpiw
+        Assert Equal(g:GetText(), pascal)
+      End
+    End
+
+    Context with the constant case
+      It should be pascalize
+        call g:Insert(constant)
+        normal gcpiw
+        Assert Equal(g:GetText(), pascal)
+      End
+    End
+
+    Context with the snake case
+      It should be pascalize
+        call g:Insert(snake)
+        normal gcpiw
+        Assert Equal(g:GetText(), pascal)
+      End
+    End
+  End
+
+  Describe #snakenize
+    Context with the camel case
+      It should be snakenize
+        call g:Insert(camel)
+        normal gcsiw
+        Assert Equal(g:GetText(), snake)
+      End
+    End
+
+    Context with the pascal case
+      It should be snakenize
+        call g:Insert(pascal)
+        normal gcsiw
+        Assert Equal(g:GetText(), snake)
+      End
+    End
+
+    Context with the constant case
+      It should be snakenize
+        call g:Insert(constant)
+        normal gcsiw
+        Assert Equal(g:GetText(), snake)
+      End
+    End
+
+    Context with the snake case
+      It should be snakenize
+        call g:Insert(snake)
+        normal gcsiw
+        Assert Equal(g:GetText(), snake)
+      End
+    End
+  End
+
+  Describe #constantize
+    Context with the camel case
+      It should be constantize
+        call g:Insert(camel)
+        normal gcCiw
+        Assert Equal(g:GetText(), constant)
+      End
+    End
+
+    Context with the pascal case
+      It should be constantize
+        call g:Insert(pascal)
+        normal gcCiw
+        Assert Equal(g:GetText(), constant)
+      End
+    End
+
+    Context with the constant case
+      It should be constantize
+        call g:Insert(constant)
+        normal gcCiw
+        Assert Equal(g:GetText(), constant)
+      End
+    End
+
+    Context with the snake case
+      It should be constantize
+        call g:Insert(snake)
+        normal gcCiw
+        Assert Equal(g:GetText(), constant)
+      End
+    End
+  End
+End
